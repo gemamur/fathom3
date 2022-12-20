@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("./dbconfig");
+import { Model, DataTypes } from "sequelize";
+import sequelize from "./dbconfig";
 
 class Joke extends Model {}
 
@@ -25,4 +25,4 @@ Joke.init(
         timestamps: false
     }
 );
-module.exports = Joke;
+export default Joke;

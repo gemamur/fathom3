@@ -1,15 +1,11 @@
-const express = require("express");
+import { Router } from "express";
 
-const {
-    countAllJokes,
-    getJoke,
-    saveJoke
-} = require("../controller/joke");
+import { countAllJokes, getJoke, saveJoke } from "../controller/joke";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/jokes", countAllJokes);
 router.get("/joke/:id", getJoke);
 router.post("/joke", saveJoke);
 
-module.exports = { routes: router };
+export const routes = router;
