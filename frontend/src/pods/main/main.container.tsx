@@ -1,12 +1,14 @@
 import React, {useState} from "react";
-import { json, useNavigate } from "react-router-dom";
-import { switchRoutes } from "@/core/router/routes";
 import { Main } from "./main.component";
-import UIFx from "uifx";
-import laugh from "@/assets/sounds/laugh.wav";
 import { getJoke, getTotalJokes } from "./main.api";
 
-const initialJoke = {
+interface InitialJoke {
+    type:string,
+    setup:string,
+    punchline:string
+}
+
+const initialJoke:InitialJoke = {
     type:"",
     setup:"",
     punchline:""
@@ -24,14 +26,13 @@ export const MainContainer = () => {
       }, []);
 
     React.useEffect(()=>{
+        if(id>totalJokes)setId(1);
         getJoke(id).then(setCurrentJoke);
       }, [id]);
 
-      const sound = new UIFx(laugh);
-      sound.play();
       return (
 
-            <Main joke={currentJoke} setId={setId} />
+            <Main joke={currentJoke} id={id} setId={setId} />
 
       );
 };
